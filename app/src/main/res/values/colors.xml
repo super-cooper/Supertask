@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#039BE5</color>
+    <color name="colorPrimaryDark">#026A9D</color>
+    <color name="colorAccent">#3590FF</color>
+    <color name="Tomato">#D50000</color>
+    <color name="Tangerine">#F4511E</color>
+    <color name="Banana">#F6BF26</color>
+    <color name="Lime">#7CB342</color>
+    <color name="Basil">#0B8043</color>
+    <color name="Sage">#33B679</color>
+    <color name="Peacock">#039BE5</color>
+    <color name="Blueberry">#3F51B5</color>
+    <color name="Lavender">#7986CB</color>
+    <color name="Grape">#8E24AA</color>
+    <color name="Flamingo">#E67C73</color>
+    <color name="Graphite">#616161</color>
+    <color name="Gold">#D7B144</color>
+    <color name="white">#FFFFFF</color>
+</resources>

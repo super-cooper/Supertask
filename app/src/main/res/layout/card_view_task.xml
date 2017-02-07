@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_margin="5dp"
+    card_view:cardBackgroundColor="@color/Peacock">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_star_white_24dp"
+            android:id="@+id/favoriteButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="4dp"
+            android:paddingBottom="16dp"
+            android:background="@color/Peacock"/>
+
+        <TextView
+            android:text="TaskName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/taskNameTextView"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/favoriteButton"
+            android:layout_toEndOf="@+id/favoriteButton"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_vert_white_48dp"
+            android:id="@+id/menuButton"
+            android:background="@color/Peacock"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:text="Class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/classTextView"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_below="@+id/taskNameTextView"
+            android:layout_toRightOf="@+id/favoriteButton"
+            android:layout_toEndOf="@+id/favoriteButton"
+            android:layout_alignBottom="@+id/menuButton"/>
+
+        <TextView
+            android:text="DueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dueDateTextView"
+            android:textColor="#FFFFFF"
+            android:layout_alignBottom="@+id/menuButton"
+            android:layout_toLeftOf="@+id/menuButton"
+            android:layout_toStartOf="@+id/menuButton" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_below="@+id/menuButton"
+            android:background="#FFFFFF"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
