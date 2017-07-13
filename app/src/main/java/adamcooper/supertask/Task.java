@@ -12,13 +12,14 @@ import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 
 /**
- * Class to represent a generic task to be completed.
+ * Course to represent a generic task to be completed.
  */
 
 public class Task implements Comparable<Task> {
 
     //fields
-    private String name, color;
+    private String name;
+    private int color;
     private boolean isFavorite;
     private double percentDone;
     private GregorianCalendar dueDate, dateCompleted;
@@ -26,6 +27,16 @@ public class Task implements Comparable<Task> {
     private static final long MINUTE_MILLIS = 60000L;
     private static final long HOUR_MILLIS = 3600000L;
     private static final long DAY_MILLIS = 86400000L;
+    private static final int DEFAULT_COLOR = R.color.Blueberry;
+
+
+    /**
+     * Default constructor, calls the parameterized constructor
+     * with a blank name, the default color, and the current date and time
+     */
+    public Task() {
+        this("", DEFAULT_COLOR, new GregorianCalendar());
+    }
 
 
 
@@ -36,7 +47,7 @@ public class Task implements Comparable<Task> {
      * @param color The name of the color associated with this task
      * @param dueDate The due date of this task
      */
-    public Task(String name, String color, GregorianCalendar dueDate) {
+    public Task(String name, int color, GregorianCalendar dueDate) {
         setName(name);
         setColor(color);
         isFavorite = false;
@@ -53,7 +64,7 @@ public class Task implements Comparable<Task> {
     public Task(JSONObject j) {
         try {
             this.name = j.getString("name");
-            this.color = j.getString("color");
+            this.color = j.getInt("color");
             this.isFavorite = j.getBoolean("isFavorite");
             this.percentDone = j.getDouble("percentDone");
             this.dueDate = (GregorianCalendar) j.get("dueDate");
@@ -99,7 +110,7 @@ public class Task implements Comparable<Task> {
 
 
 
-    public boolean setColor(String newColor) {
+    public boolean setColor(int newColor) {
         this.color = newColor;
         return true;
     }
@@ -150,6 +161,15 @@ public class Task implements Comparable<Task> {
     }
 
 
+    /**
+     * The color of this task
+     * @return This task's color
+     */
+    public int getColor() {
+        return this.color;
+    }
+
+
 
 
     /**
@@ -157,8 +177,8 @@ public class Task implements Comparable<Task> {
      * to avoid conflicts
      * @return The class associated with an assignment
      */
-    public Class getAssociatedClass() {
-        return new Class("", new Professor(""), this.color);
+    public Course getAssociatedCourse() {
+        return new Course("", new Professor(""), this.color);
     }
 
 

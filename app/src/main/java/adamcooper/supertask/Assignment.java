@@ -7,13 +7,13 @@ import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 
 /**
- * Class to represent a homework assignment
+ * Course to represent a homework assignment
  */
 
 public class Assignment extends Task {
 
     //fields
-    Class associatedClass;
+    Course associatedCourse;
 
 
     /**
@@ -22,11 +22,11 @@ public class Assignment extends Task {
      * @param name            The name of this assignment
      * @param color           The color of this assignment
      * @param dueDate         The due date of this assignment
-     * @param associatedClass The class associated with this assignment
+     * @param associatedCourse The class associated with this assignment
      */
-    public Assignment(String name, String color, GregorianCalendar dueDate, Class associatedClass) {
+    public Assignment(String name, int color, GregorianCalendar dueDate, Course associatedCourse) {
         super(name, color, dueDate);
-        this.associatedClass = associatedClass;
+        this.associatedCourse = associatedCourse;
     }
 
 
@@ -38,7 +38,7 @@ public class Assignment extends Task {
     public Assignment(JSONObject j) {
         super(j);
         try {
-            associatedClass = (Class) j.get("associatedClass");
+            associatedCourse = (Course) j.get("associatedCourse");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -48,19 +48,18 @@ public class Assignment extends Task {
     /**
      * Changes class, used for editing
      *
-     * @param newClass The class to change to
+     * @param newCourse The class to change to
      * @return True if class successfully changed
      */
-    public boolean setClass(Class newClass) {
-        this.associatedClass = newClass;
-        setColor(newClass.getColor());
+    public boolean setClass(Course newCourse) {
+        this.associatedCourse = newCourse;
+        setColor(newCourse.getColor());
         return true;
     }
 
 
-    @Override
-    public Class getAssociatedClass() {
-        return this.associatedClass;
+    public Course getAssociatedCourse() {
+        return this.associatedCourse;
     }
 
 
@@ -69,7 +68,7 @@ public class Assignment extends Task {
         JSONObject j = super.getJSONObject();
 
         try {
-            j.put("associatedClass", associatedClass);
+            j.put("associatedCourse", associatedCourse);
         } catch (JSONException e) {
             throw new InputMismatchException
                     ("Trouble writing file");
@@ -79,7 +78,7 @@ public class Assignment extends Task {
 
 
     /**
-     * Class to represent a reading assignment
+     * Course to represent a reading assignment
      */
     class Reading extends Assignment {
 
@@ -95,11 +94,11 @@ public class Assignment extends Task {
          * @param name            The name of this assignment
          * @param color           The color of this assignment
          * @param dueDate         The due date of this assignment
-         * @param associatedClass The class associated with this assignment
+         * @param associatedCourse The class associated with this assignment
          * @param material        The material to read
          */
-        public Reading(String name, String color, GregorianCalendar dueDate, Class associatedClass, Material material, int pagesToRead) {
-            super(name, color, dueDate, associatedClass);
+        public Reading(String name, int color, GregorianCalendar dueDate, Course associatedCourse, Material material, int pagesToRead) {
+            super(name, color, dueDate, associatedCourse);
             this.material = material;
             this.pagesToRead = pagesToRead;
             pagesRead = 0;
@@ -203,7 +202,7 @@ public class Assignment extends Task {
 
 
         /**
-         * Class to represent reading material
+         * Course to represent reading material
          */
         class Material {
 
@@ -245,7 +244,7 @@ public class Assignment extends Task {
 
 
     /**
-     * Class to represent a problem set
+     * Course to represent a problem set
      */
 
     class ProblemSet extends Assignment {
@@ -255,8 +254,8 @@ public class Assignment extends Task {
         int problemsToComplete;
         int problemsCompleted;
 
-        public ProblemSet(String name, String color, GregorianCalendar dueDate, Class associatedClass, int problemsToComplete) {
-            super(name, color, dueDate, associatedClass);
+        public ProblemSet(String name, int color, GregorianCalendar dueDate, Course associatedCourse, int problemsToComplete) {
+            super(name, color, dueDate, associatedCourse);
             this.problemsToComplete = problemsToComplete;
             this.problemsCompleted = 0;
         }
@@ -340,7 +339,7 @@ public class Assignment extends Task {
 
 
     /**
-     * Class to represent a paper
+     * Course to represent a paper
      */
     class Paper extends Assignment {
 
@@ -356,13 +355,13 @@ public class Assignment extends Task {
          * @param name            The name of this Paper
          * @param color           The color of this paper
          * @param dueDate         The due date of this paper
-         * @param associatedClass The class associated with this paper
+         * @param associatedCourse The class associated with this paper
          * @param assignedPages   Switch for whether the required length of the paper is dependent on
          *                        pages or words
          * @param amtToWrite      The number of pages or words required to write
          */
-        public Paper(String name, String color, GregorianCalendar dueDate, Class associatedClass, boolean assignedPages, int amtToWrite) {
-            super(name, color, dueDate, associatedClass);
+        public Paper(String name, int color, GregorianCalendar dueDate, Course associatedCourse, boolean assignedPages, int amtToWrite) {
+            super(name, color, dueDate, associatedCourse);
             this.assignedPages = assignedPages;
             this.amtToWrite = amtToWrite;
             amtWritten = 0;
@@ -442,11 +441,11 @@ public class Assignment extends Task {
 
 
     /**
-     * Class to represent a standard research assignment
+     * Course to represent a standard research assignment
      */
     class Presentation extends Assignment {
-        public Presentation(String name, String color, GregorianCalendar dueDate, Class associatedClass) {
-            super(name, color, dueDate, associatedClass);
+        public Presentation(String name, int color, GregorianCalendar dueDate, Course associatedCourse) {
+            super(name, color, dueDate, associatedCourse);
         }
 
         public Presentation(JSONObject j) {
@@ -461,11 +460,11 @@ public class Assignment extends Task {
 
 
     /**
-     * Class to represent a programming assignment
+     * Course to represent a programming assignment
      */
     class Program extends Assignment {
-        public Program(String name, String color, GregorianCalendar dueDate, Class associatedClass) {
-            super(name, color, dueDate, associatedClass);
+        public Program(String name, int color, GregorianCalendar dueDate, Course associatedCourse) {
+            super(name, color, dueDate, associatedCourse);
         }
 
         public Program(JSONObject j) {
@@ -480,11 +479,11 @@ public class Assignment extends Task {
 
 
     /**
-     * Class to represent a composition for music or art
+     * Course to represent a composition for music or art
      */
     class Composition extends Assignment {
-        public Composition(String name, String color, GregorianCalendar dueDate, Class associatedClass) {
-            super(name, color, dueDate, associatedClass);
+        public Composition(String name, int color, GregorianCalendar dueDate, Course associatedCourse) {
+            super(name, color, dueDate, associatedCourse);
         }
 
         public Composition(JSONObject j) {
@@ -499,7 +498,7 @@ public class Assignment extends Task {
 
 
     /**
-     * Class to represent the viewing of a video or a movie
+     * Course to represent the viewing of a video or a movie
      */
     class Viewing extends Assignment {
 
@@ -507,8 +506,8 @@ public class Assignment extends Task {
         int minutesToWatch;
         int minutesWatched;
 
-        public Viewing(String name, String color, GregorianCalendar dueDate, Class associatedClass, int minutesToWatch) {
-            super(name, color, dueDate, associatedClass);
+        public Viewing(String name, int color, GregorianCalendar dueDate, Course associatedCourse, int minutesToWatch) {
+            super(name, color, dueDate, associatedCourse);
             setMinutesToWatch(minutesToWatch);
             minutesWatched = 0;
         }

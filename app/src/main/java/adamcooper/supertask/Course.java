@@ -9,32 +9,28 @@ import java.util.Collections;
 import java.util.InputMismatchException;
 
 /**
- * Class that represents a class being taken by a student
+ * Class that represents a course being taken by a student
  */
 
-public class Class {
+public class Course {
 
     //fields
     private Professor professor;
     private String building, room;
     private String name, dept, number;
-    private String color;
+    private int color;
     private ArrayList<Long> reminders;
     private ArrayList<Integer> daysHeld;
     private static final long MINUTE_MILLIS = 60000L;
     private static final long HOUR_MILLIS = 3600000L;
     private static final long DAY_MILLIS = 86400000L;
-    private static final int MONDAY = 0;
-    private static final int TUESDAY = 1;
-    private static final int WEDNESDAY = 2;
-    private static final int THURSDAY = 3;
-    private static final int FRIDAY = 4;
-    private static final int SATURDAY = 5;
-    private static final int SUNDAY = 6;
+    private static enum day {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
 
 
 
-    public Class(String name, Professor prof, String color) {
+    public Course(String name, Professor prof, int color) {
         this.name = name;
         this.professor = prof;
         this.color = color;
@@ -42,7 +38,7 @@ public class Class {
         daysHeld = new ArrayList<>();
     }
 
-    public Class(JSONObject j) {
+    public Course(JSONObject j) {
         try {
             this.professor = (Professor) j.get("professor");
             this.building = j.getString("building");
@@ -50,7 +46,7 @@ public class Class {
             this.name = j.getString("name");
             this.dept = j.getString("dept");
             this.number = j.getString("number");
-            this.color = j.getString("color");
+            this.color = j.getInt("color");
             reminders = new ArrayList<>();
             daysHeld = new ArrayList<>();
             JSONArray arrayCharles = j.getJSONArray("reminders");
@@ -64,7 +60,7 @@ public class Class {
         }
     }
 
-    public String getColor() {
+    public int getColor() {
         return this.color;
     }
 

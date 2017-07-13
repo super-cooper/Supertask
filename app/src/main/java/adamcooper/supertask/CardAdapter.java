@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /**
- * Class for managing cards
+ * Course for managing cards
  */
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
@@ -196,7 +196,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             this.adapter = adapter;
             Task task = items.get(getAdapterPosition());
             name.setText(task.getName());
-            course.setText(task.getAssociatedClass().getName());
+            course.setText(task.getAssociatedCourse().getName());
             dueDate.setText(Task.getDateAsString(task.getDueDate()));
             if (task.isFavorite()) {
                 favoriteButton.setImageDrawable(ContextCompat.

@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 
 /**
- * Class to represent an exam
+ * Course to represent an exam
  */
 
 public class Exam extends Assignment {
@@ -22,13 +22,13 @@ public class Exam extends Assignment {
 
     /**
      * Constructor
-     * @param associatedClass The class giving this exam
+     * @param associatedCourse The class giving this exam
      * @param isFinal Is this exam a final?
      * @param date The date of this exam
      */
-    public Exam(Class associatedClass, boolean isFinal, GregorianCalendar date) {
-        super(associatedClass.getName() + (isFinal ? " Final" : " Exam"),
-                associatedClass.getColor(), date, associatedClass);
+    public Exam(Course associatedCourse, boolean isFinal, GregorianCalendar date) {
+        super(associatedCourse.getName() + (isFinal ? " Final" : " Exam"),
+                associatedCourse.getColor(), date, associatedCourse);
         this.isFinal = isFinal;
         amtTime = 0L;
         building = "";

@@ -17,7 +17,8 @@ import java.lang.*;
 public class PickTaskDialogFragment extends DialogFragment {
 
     //fields
-    public static final String TASK_TYPE_KEY = "taskType";
+    public static final String TASK_TYPE_KEY = "taskType",
+                               TASK_NAME_KEY = "taskName";
     int taskType = TaskManager.OTHER_ASSIGNMENT; //can't be primitive for some reason
 
 
@@ -29,7 +30,7 @@ public class PickTaskDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle onSavedInstanceState) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-        String[] items = getResources().getStringArray(R.array.chooseTaskTypeOptions);
+        final String[] items = getResources().getStringArray(R.array.chooseTaskTypeOptions);
         dialogBuilder.setTitle(R.string.dialog_choose_task_title).
                 setSingleChoiceItems(items, TaskManager.OTHER_ASSIGNMENT, new DialogInterface.OnClickListener() {
                     @Override
@@ -40,8 +41,9 @@ public class PickTaskDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent = new Intent(getActivity(), CreateTaskActivity.class);
-                java.lang.Class task = TaskManager.taskTyper(taskType); //get the type of task
+                Class task = TaskManager.taskTyper(taskType); //get the type of task
                 intent.putExtra(TASK_TYPE_KEY, task);
+                intent.putExtra(TASK_NAME_KEY, items[taskType]);
                 dismiss();
                 startActivity(intent);
             }

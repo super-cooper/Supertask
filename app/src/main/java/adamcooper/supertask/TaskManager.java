@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 /**
- * Class to consolidate and manage all tasks
+ * Course to consolidate and manage all tasks
  */
 
 public class TaskManager {
@@ -89,7 +89,7 @@ public class TaskManager {
      * @param index The value equal to the task desired
      * @return The class associated with the value given
      */
-    public static java.lang.Class taskTyper(int index) {
+    public static Class taskTyper(int index) {
         switch (index) { //which radio button was selected
             case READING:
                 return Assignment.Reading.class;

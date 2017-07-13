@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.util.InputMismatchException;
 
 /**
- * Class that represents a professor and any handy information
+ * Course that represents a professor and any handy information
  */
 
 public class Professor {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ public class CreateTaskActivity extends AppCompatActivity {
 
     //fields
     java.lang.Class taskType;
+    Task newTask;
     String[] tasks;
     private Integer[] colorIcons = {R.drawable.ic_stop_tomato_20dp, R.drawable.ic_stop_tangerine_20dp,
             R.drawable.ic_stop_banana_20dp, R.drawable.ic_stop_lime_20dp, R.drawable.ic_stop_basil_20dp,
@@ -31,7 +33,13 @@ public class CreateTaskActivity extends AppCompatActivity {
         Bundle bun = getIntent().getExtras(); //where we get our task type
         this.taskType = (java.lang.Class) bun.get(PickTaskDialogFragment.TASK_TYPE_KEY);
 
+        String activityTitle = "New " + bun.get(PickTaskDialogFragment.TASK_NAME_KEY);
+
+        setTitle(activityTitle);
+
         setUpViews();
+
+        this.newTask = new Task();
     }
 
 
@@ -41,9 +49,34 @@ public class CreateTaskActivity extends AppCompatActivity {
      * Sets up appropriate views based on the type of task
      */
     private void setUpViews() {
-        Spinner colorSpinner = (Spinner) findViewById(R.id.taskColorSpinner);
+        this.setUpColorSpinner();
+    }
+
+
+    /**
+     * Sets up the color selection spinner for this Activity
+     */
+    private void setUpColorSpinner() {
+        Spinner colorSpinner = this.getColorSpinner();
         SimpleImageArrayAdapter adapter = new SimpleImageArrayAdapter(this, colorIcons);
         colorSpinner.setAdapter(adapter);
+        colorSpinner.setSelection(this.newTask.getColor()); // default selection is Peacock
+
+        colorSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+    }
+
+
+    /**
+     * Gets the color spinner used in this Activity
+     * @return The color spinner used in this Activity
+     */
+    private Spinner getColorSpinner() {
+        return (Spinner) findViewById(R.id.taskColorSpinner);
     }
 
 
